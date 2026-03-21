@@ -1,0 +1,23 @@
+@use './variables' as *;
+
+.stopwatch__centro {
+  position: absolute;
+  width: $center-size;
+  height: $center-size;
+  transform-origin: bottom center;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -55%);
+
+  background-color: $center-color;
+  border-radius: 50%;
+}
+
+.stopwatch--speed-up .stopwatch__segundo {
+  animation-duration: 10s;
+}
+
+.stopwatch--speed-up .stopwatch__minuto {
+  animation-duration: 600s; // 10 minutos
+}
