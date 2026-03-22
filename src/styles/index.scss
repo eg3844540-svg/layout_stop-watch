@@ -1,5 +1,9 @@
-@use './variables';
-@use './stopwatch';
-@use './stopwatch__minuto';
-@use './stopwatch__segundo';
-@use './stopwatch__centro';
+@use './variables' as *;
+@use './_stopwatch';
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

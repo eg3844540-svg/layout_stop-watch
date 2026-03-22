@@ -1,16 +1,61 @@
-@use './variables' as *;
+@use './variables' as v;
 
-body {
+.stopwatch {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  width: v.$clock-size;
+  height: v.$clock-size;
+  border: 1vmin dotted v.$border-color;
+  border-radius: 50%;
+
+  &__center {
+    position: absolute;
+    width: v.$center-size;
+    height: v.$center-size;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: v.$center-color;
+    border-radius: 50%;
+    z-index: 10;
+  }
+
+  &__min {
+    position: absolute;
+    bottom: 50%;
+    width: v.$minute-width;
+    height: v.$minute-length;
+    background-color: v.$minute-color;
+    transform-origin: bottom center;
+    animation: tick 3600s steps(60) infinite;
+  }
+
+  &__sec {
+    position: absolute;
+    bottom: 50%;
+    width: v.$second-width;
+    height: v.$second-length;
+    background-color: v.$second-color;
+    transform-origin: bottom center;
+    animation: tick 60s linear infinite;
+  }
+
+  &--speed-up > &__min {
+    animation-duration: 600s; // 10 minutos
+  }
+
+  &--speed-up > &__sec {
+    animation-duration: 10s; // 10 segundos
+  }
 }
 
-.stopwatch {
-  width: $clock-size;
-  height: $clock-size;
-  border: 1vmin dotted $border-color;
-  border-radius: 50%;
-  position: relative;
+@keyframes tick {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
