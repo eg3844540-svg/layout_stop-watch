@@ -1,60 +1,60 @@
-@use './variables' as v;
-
 .stopwatch {
+  $color-stopwatch-border: #000;
+  $color-stopwatch-center: #f6a603;
+  $color-minutes-hand: #0700ff;
+  $color-seconds-hand: #2c8000;
+
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: v.$clock-size;
-  height: v.$clock-size;
-  border: 1vmin dotted v.$border-color;
-  border-radius: 50%;
+  width: 80vmin;
+  aspect-ratio: 1;
+  border: 1vmin dotted $color-stopwatch-border;
+  border-radius: 100%;
 
   &__center {
     position: absolute;
-    width: v.$center-size;
-    height: v.$center-size;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: v.$center-color;
-    border-radius: 50%;
-    z-index: 10;
+    width: 5vmin;
+    aspect-ratio: 1;
+    background-color: $color-stopwatch-center;
+    border-radius: 100%;
   }
 
   &__min {
     position: absolute;
     bottom: 50%;
-    width: v.$minute-width;
-    height: v.$minute-length;
-    background-color: v.$minute-color;
-    transform-origin: bottom center;
+    width: 3vmin;
+    height: 20vmin;
+    background-color: $color-minutes-hand;
     animation: tick 3600s steps(60) infinite;
+    transform-origin: bottom center;
   }
 
   &__sec {
     position: absolute;
     bottom: 50%;
-    width: v.$second-width;
-    height: v.$second-length;
-    background-color: v.$second-color;
+    width: 1.5vmin;
+    height: 38vmin;
+    background-color: $color-seconds-hand;
+    animation: tick 60s infinite linear;
     transform-origin: bottom center;
-    animation: tick 60s linear infinite;
   }
 
   &--speed-up > &__min {
-    animation-duration: 600s; // 10 minutos
+    animation-duration: 600s;
   }
 
   &--speed-up > &__sec {
-    animation-duration: 10s; // 10 segundos
+    animation-duration: 10s;
   }
 }
 
 @keyframes tick {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
+
   to {
     transform: rotate(360deg);
   }

@@ -1,5 +1,6 @@
-@use './variables' as *;
-@use './_stopwatch';
+@use './variables';
+@use './stopwatch';
+
 body {
   margin: 0;
   display: flex;
